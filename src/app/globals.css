@@ -21,15 +21,17 @@ a {
   text-decoration: none;
 }
 
+/* --- #460f0f */
+
 .dark {
-  --bg: #0f172a;
-  --textColor: #ddd;
+  --bg: #161616;
+  --textColor: #fff;
   --softBg: #1f273a;
   --softTextColor: #a6a6a6;
 }
 
 .light {
-  --bg: white;
+  --bg: #fff;
   --textColor: black;
   --softBg: #f0f0f0;
   --softTextColor: #626262;
