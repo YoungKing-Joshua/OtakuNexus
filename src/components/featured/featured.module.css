@@ -16,9 +16,9 @@
 
 .imgContainer {
     flex: 2.5;
-    height: 500px;
+    height: 600px;
     position: relative;
-    border-radius: 10px; 
+    border-radius: 5px; 
     overflow: hidden;
 }
 
@@ -64,8 +64,8 @@
 
 .postDesc {
     font-size: 12px;
-    font-weight: 300;
-    color: var(--softTextColor);
+    font-weight: 400;
+    color: var(--subtextColor);
 }
 
 .button {

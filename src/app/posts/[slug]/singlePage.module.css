@@ -30,6 +30,37 @@
   object-fit: cover;
 }
 
+
+.input {
+  width: 100%;
+  padding: 8px;
+  font-size: 1.2em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.updateButton, .deleteButton {
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.updateButton:hover {
+  background-color: darkblue;
+}
+
+.deleteButton {
+  background-color: red;
+}
+
+.deleteButton:hover {
+  background-color: darkred;
+}
+
 .userTextContainer {
   display: flex;
   flex-direction: column;

@@ -1,30 +1,99 @@
-import Menu from "@/components/Menu/Menu";
-import styles from "./singlePage.module.css";
+"use client";
+
 import Image from "next/image";
-import Comments from "@/components/comments/Comments";
+import styles from "./singlePage.module.css";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.bubble.css";
 
-const getData = async (slug) => {
-  const res = await fetch(`http://localhost:3000/api/posts/${slug}`, {
-    cache: "no-store",
-  });
+const SinglePage = ({ params }) => {
+  const { slug } = params;
+  const [data, setData] = useState(null);
+  const { data: session, status } = useSession();
+  const router = useRouter();
 
-  if (!res.ok) {
-    throw new Error("Failed");
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+  const [catSlug, setCatSlug] = useState("");
+  const [img, setImg] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch(`/api/posts/${slug}`, { cache: "no-store" });
+        if (!res.ok) throw new Error("Failed to fetch post data");
+        const postData = await res.json();
+        setData(postData);
+        setTitle(postData.title);
+        setDesc(postData.desc);
+        setCatSlug(postData.catSlug);
+        setImg(postData.img);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchData();
+  }, [slug]);
+
+  const handleUpdate = async () => {
+    try {
+      const res = await fetch(`/api/posts/${slug}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title,
+          desc,
+          img,
+          catSlug,
+        }),
+      });
+      if (res.status === 200) {
+        router.reload();
+      } else {
+        console.error("Failed to update post");
+      }
+    } catch (error) {
+      console.error("Error updating post:", error);
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      const res = await fetch(`/api/posts/${slug}`, { method: "DELETE" });
+      if (res.status === 204) {
+        router.push("/"); // Redirect to home or another appropriate page
+      } else {
+        console.error("Failed to delete post");
+      }
+    } catch (error) {
+      console.error("Error deleting post:", error);
+    }
+  };
+
+  if (status === "loading" || !data) {
+    return <div>Loading...</div>;
   }
 
-  return res.json();
-};
-
-const SinglePage = async ({ params }) => {
-  const { slug } = params;
-
-  const data = await getData(slug);
+  const isAuthor = session?.user?.email === data.userEmail;
 
   return (
     <div className={styles.container}>
       <div className={styles.infoContainer}>
         <div className={styles.textContainer}>
-          <h1 className={styles.title}>{data?.title}</h1>
+          <h1 className={styles.title}>
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              disabled={!isAuthor}
+              className={styles.input}
+            />
+          </h1>
           <div className={styles.user}>
             {data?.user?.image && (
               <div className={styles.userImageContainer}>
@@ -45,12 +114,26 @@ const SinglePage = async ({ params }) => {
       </div>
       <div className={styles.content}>
         <div className={styles.post}>
-          <div
-            className={styles.description}
-            dangerouslySetInnerHTML={{ __html: data?.desc }}
+          <ReactQuill
+            className={styles.textArea}
+            theme="bubble"
+            value={desc}
+            onChange={setDesc}
+            readOnly={!isAuthor}
+            placeholder="Tell your story..."
           />
+          {isAuthor && (
+            <>
+              <button className={styles.updateButton} onClick={handleUpdate}>
+                Update Post
+              </button>
+              <button className={styles.deleteButton} onClick={handleDelete}>
+                Delete Post
+              </button>
+            </>
+          )}
           <div className={styles.comment}>
-            <Comments postSlug={slug}/>
+            <Comments postSlug={slug} />
           </div>
         </div>
         <Menu />

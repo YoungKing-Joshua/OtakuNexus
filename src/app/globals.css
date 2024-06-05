@@ -24,17 +24,19 @@ a {
 /* --- #460f0f */
 
 .dark {
-  --bg: #161616;
+  --bg: #171725;
   --textColor: #fff;
   --softBg: #1f273a;
   --softTextColor: #a6a6a6;
+  --subtextColor: #a6a6a6;
 }
 
 .light {
-  --bg: #fff;
+  --bg: #ffffff;
   --textColor: black;
-  --softBg: #f0f0f0;
-  --softTextColor: #555;
+  --softBg: #f1eaea;
+  --softTextColor: #272727;
+  --subtextColor: #a6a6a6;
 }
 
 .container {

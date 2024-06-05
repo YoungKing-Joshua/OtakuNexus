@@ -18,35 +18,39 @@
   gap: 10px;
   text-transform: capitalize;
   width: 15%;
-  height: 80px;
+  height: 60px;
   justify-content: center;
-  border-radius: 10px;
+  border-radius: 30px;
 }
 
-.category.style {
-  background-color: #57c4ff31;
+.category:nth-child(1) {
+  background-color: #57c4ff31; /* style */
 }
 
-.category.fashion {
-  background-color: #da85c731;
+.category:nth-child(2) {
+  background-color: #da85c731; /* fashion */
 }
 
-.category.food {
-  background-color: #7fb88133;
+.category:nth-child(3) {
+  background-color: #7fb88133; /* food */
 }
 
-.category.travel {
-  background-color: #ff795736;
+.category:nth-child(4) {
+  background-color: #ff795736; /* travel */
 }
 
-.category.culture {
-  background-color: #ffb04f45;
+.category:nth-child(5) {
+  background-color: #ffb04f45; /* culture */
 }
 
-.category.coding {
-  background-color: #5e4fff31;
+.category:nth-child(6) {
+  background-color: #5e4fff31; /* coding */
 }
 
+/* Default color for categories without predefined color */
+.category {
+  background-color: #cccccc; /* Change this to your desired default color */
+}
 .image {
   border-radius: 50%;
 }
