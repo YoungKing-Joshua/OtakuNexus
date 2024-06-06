@@ -7,12 +7,13 @@
 
 .imageContainer {
   flex: 1;
-  height: 350px;
+  height: 250px;
   position: relative;
 }
 
 .image {
   object-fit: cover;
+  border-radius: 5px;
 }
 
 .textContainer {
