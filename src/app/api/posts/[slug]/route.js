@@ -39,30 +39,3 @@ export const DELETE = async (req, { params }) => {
     );
   }
 };
-
-
-export const PUT = async (req, { params }) => {
-  const { slug } = params;
-  const { title, desc, img, catSlug } = await req.json();
-
-  try {
-    const updatedPost = await prisma.post.update({
-      where: { slug },
-      data: {
-        title,
-        desc,
-        img,
-        catSlug,
-        updatedAt: new Date(), // Add a field for updated timestamp if you have one
-      },
-    });
-
-    return new NextResponse(JSON.stringify(updatedPost), { status: 200 });
-  } catch (err) {
-    console.error(err);
-    return new NextResponse(
-      JSON.stringify({ message: "Failed to update post!" }),
-      { status: 500 }
-    );
-  }
-};
