@@ -33,7 +33,7 @@ const SinglePage = ({ params }) => {
     try {
       const res = await fetch(`/api/posts/${slug}`, { method: "DELETE" });
       if (res.status === 204) {
-        router.push("/"); // Redirect to home or another appropriate page
+        router.push("/"); 
       } else {
         console.error("Failed to delete post");
       }
@@ -47,6 +47,7 @@ const SinglePage = ({ params }) => {
   }
 
   const isAuthor = session?.user?.email === data.userEmail;
+  const createdDate = data?.createdAt.substring(0, 10);
 
   return (
     <div className={styles.container}>
@@ -61,7 +62,7 @@ const SinglePage = ({ params }) => {
             )}
             <div className={styles.userTextContainer}>
               <span className={styles.username}>{data?.user.name}</span>
-              <span className={styles.date}>01.01.2024</span>
+              <span className={styles.date}>{createdDate}</span>
             </div>
           </div>
         </div>
