@@ -1,13 +1,12 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+
+console.log("Firebase API Key:", process.env.NEXT_PUBLIC_FIREBASE_API_KEY);
 
 // Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCP6aUmEKdzoKK7bdIjJUdWj6WZ6TFoZJ0",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: "animeblog-abdcc.firebaseapp.com",
   projectId: "animeblog-abdcc",
   storageBucket: "animeblog-abdcc.appspot.com",

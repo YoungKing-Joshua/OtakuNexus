@@ -57,7 +57,7 @@
 }
 
 .imageContainer {
-  flex: 1;
+  flex: 2.5;
   height: 350px;
   position: relative;
 }
