@@ -15,7 +15,6 @@ Otaku Nexus is a full-stack blog website designed for anime enthusiasts. It feat
 - **Backend**: Next.js
 - **Database**: MongoDB, Prisma
 - **Styling**: CSS
-- **API**: RESTful APIs
 - **Authentication**: OAuth
 
 ## Installation
