@@ -93,7 +93,3 @@ Otaku Nexus is a full-stack blog website designed for anime enthusiasts. It feat
 ## Contact
 
 For any inquiries or feedback, please contact [joshuadeialorse@gmail.com](mailto:joshuadeialorse@gmail.com).
-
----
-
-This README provides a comprehensive guide to your project, covering its features, technologies, installation steps, database setup, scripts, contributing guidelines, and license. Adjust the details as necessary to fit your specific project setup.
